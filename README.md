@@ -1,16 +1,23 @@
-# Project Zomboid Multiplayer Sync
+<center><h1>Project Zomboid - Multiplayer Sync</h1></center>
 
-Have you ever been playing on a Zomboid server only for the IP address to change & you lose all your map data? Well then this is the tool for you!
+Have you ever been playing on a Zomboid server only for the IP address to change & you lose all your map data?
 
-This tool has been designed to help you migrate your player data over to work with the new server.
+Then this is the tool for you!
 
-Not only does it migrate you player data, it also updates your server list with the latest IP address.
+This tool has been designed to help you migrate your player data over to work with the new server IP address.
+
+Not only does it migrate you player data, it also updates your favourite server list with the latest IP address.
 
 # Installation
 
-1. Install Git for Windows https://git-scm.com/downloads/win (If you'e on Mac or Linux skip this step)
-2. Download `main.sh` & save it to somewhere you're happy with
-3. Open up Terminal & type `./main.sh LATEST_SERVER_IP` for example `./main.sh 13.220.54.36` then press enter
+> [!WARNING]
+> Windows Users must install Git to run the file https://git-scm.com/downloads/win
+
+> [!NOTE]
+> Linux & Mac Users will have support out of the box to run shell scripts.
+
+1. Download `main.sh` & save it to somewhere you're happy with
+2. Open up terminal (Git Bash for Windows) & type `./main.sh LATEST_SERVER_IP` for example `./main.sh 13.220.54.36` then press enter
 
 # Details
 
