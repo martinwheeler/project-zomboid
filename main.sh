@@ -1,6 +1,6 @@
-cwd=$(pwd)
+#!/usr/bin/env sh
 
-# NOTE: This may be a different path depending on where the user has installed it
+cwd=$(pwd)
 steam="C:\Program Files (x86)\Steam\steam.exe"
 
 base_path="$HOME/Zomboid"
@@ -26,24 +26,30 @@ fi
 echo "Old IP: $old_ip_address"
 echo "New IP: $new_ip_address"
 
-old_folders=$(ls $save_path | grep $old_ip_address)
+# Skip & launch if IP is the same
+if [ $old_ip_address == $new_ip_address ]; then
+  echo "Launching PZ, IP is already updated!"
+  "$steam" steam://rungameid/108600
+else
+  old_folders=$(ls $save_path | grep $old_ip_address)
 
-# There may be multiple characters so move them all
-for old_folder in $old_folders; do
-  new_folder=$(echo $old_folder | sed -e "s/$old_ip_address/$new_ip_address/")
-  mv -f "${save_path}/${old_folder}" "${save_path}/${new_folder}"
-done
+  # There may be multiple characters so move them all
+  for old_folder in $old_folders; do
+    new_folder=$(echo $old_folder | sed -e "s/$old_ip_address/$new_ip_address/")
+    mv -f "${save_path}/${old_folder}" "${save_path}/${new_folder}"
+  done
 
-echo "Finished migrating player data"
+  echo "Finished migrating player data"
 
-echo "Updating PZ server list with new IP"
+  echo "Updating PZ server list with new IP"
 
-sed -i -e "s/$old_ip_address/$new_ip_address/" "$lua_path/ServerListSteam.txt"
+  sed -i -e "s/$old_ip_address/$new_ip_address/" "$lua_path/ServerListSteam.txt"
 
-echo "Saving IP address for next time"
+  echo "Saving IP address for next time"
 
-echo $new_ip_address >old_ip_address.txt
+  echo $new_ip_address >old_ip_address.txt
 
-echo "Launching PZ!"
+  echo "Launching PZ!"
 
-"$steam" steam://rungameid/108600
+  "$steam" steam://rungameid/108600
+fi
